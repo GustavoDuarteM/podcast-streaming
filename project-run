@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description: This script is used to build the project
+
+./mvnw spring-boot:run

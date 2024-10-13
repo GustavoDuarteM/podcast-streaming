@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description: This script is used to run the project
+
+mvn clean install
