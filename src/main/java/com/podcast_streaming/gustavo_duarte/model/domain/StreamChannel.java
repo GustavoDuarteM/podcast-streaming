@@ -2,15 +2,30 @@ package com.podcast_streaming.gustavo_duarte.model.domain;
 
 import com.podcast_streaming.gustavo_duarte.model.domain.base.Content;
 
-import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.List;  
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+@Table(name = "stream_channels")
 
 public class StreamChannel {
-  @Getter @Setter private Integer id;
-  @Getter @Setter private String uuid;
-  @Getter @Setter private Publisher publisher;
-  @Getter @Setter private List<Content> contents;
-  @Getter @Setter private String name;
-  @Getter @Setter private String description; 
+  @Id
+  private Integer id;
+  private String uuid;
+  private Publisher publisher;
+  private List<Content> contents;
+  private String name;
+  private String description; 
+  private LocalDateTime createdAt;
 }
