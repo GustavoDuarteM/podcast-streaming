@@ -7,4 +7,5 @@ import com.podcast_streaming.gustavo_duarte.model.domain.Publisher;
 
 @Repository
 public interface PublisherRepository extends CrudRepository<Publisher, Long> {
+    Publisher findByUuid(String uuid);
 }
