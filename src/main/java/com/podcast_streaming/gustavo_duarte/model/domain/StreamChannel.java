@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class StreamChannel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonIgnore
   private Integer id;
   private String uuid;
   private String name;

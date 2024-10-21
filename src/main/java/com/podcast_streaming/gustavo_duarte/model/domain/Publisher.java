@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class Publisher {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonIgnore
   private Integer id;
   private String uuid;
   
