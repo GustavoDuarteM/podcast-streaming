@@ -18,6 +18,7 @@ public class UpdateStreamChannelsService {
   ) {
     this.streamChannelRepository = streamChannelRepository;
   }
+  
   @Transactional
   public StreamChannel update(StreamChannel streamChannel) {
     StreamChannel streamChannelToUpdate = streamChannelRepository.findByUuid(streamChannel.getUuid());
