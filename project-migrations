@@ -1,4 +1,4 @@
 #!/bin/sh
 # Description: This script is used to run migrations
 
-mvn clean flyway:migrate -Dflyway.configFiles=conf/flyway.conf
+mvn clean flyway:migrate
