@@ -28,7 +28,8 @@ public class StreamChannelPresenter {
         null,
         this.publisherUuid,
         null
-      )
+      ),
+      null
     );
   }
 }
