@@ -42,8 +42,5 @@ public class StreamChannel {
   @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
   @JoinColumn(name = "stream_channel_id")
   private List<Content> contents;
-
-  public StreamChannel(String uuid) {
-    this.uuid = uuid;
-  }
+  
 }

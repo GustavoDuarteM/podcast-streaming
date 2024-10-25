@@ -19,17 +19,15 @@ public class StreamChannelPresenter {
   
 
   public StreamChannel toDomain() {
-    return new StreamChannel(
-      this.id,
-      this.uuid,
-      this.name,
-      this.description,
-      new Publisher(
-        null,
-        this.publisherUuid,
-        null
-      ),
-      null
-    );
+    Publisher publisher = new Publisher();
+    publisher.setUuid(this.publisherUuid);
+    
+    StreamChannel streamChannel = new StreamChannel();
+    streamChannel.setId(this.id);
+    streamChannel.setUuid(this.uuid);
+    streamChannel.setDescription(this.description);
+    streamChannel.setPublisher(publisher);
+
+    return streamChannel;
   }
 }

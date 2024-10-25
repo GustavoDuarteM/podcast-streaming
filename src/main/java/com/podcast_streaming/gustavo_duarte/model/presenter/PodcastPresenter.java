@@ -1,6 +1,7 @@
 package com.podcast_streaming.gustavo_duarte.model.presenter;
 
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
+import com.podcast_streaming.gustavo_duarte.model.domain.StreamChannel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +26,17 @@ public class PodcastPresenter {
   public Podcast toDomain() {
     LocalDate releaseDate = LocalDate.parse(this.releaseDate, FORMATTER);
     LocalDateTime releaseDateTime = releaseDate.atStartOfDay();
-    return new Podcast(
-      this.uuid,
-      this.title,
-      this.description,
-      releaseDateTime,
-      this.streamChannelUuid
-      );
+    
+    StreamChannel streamChannel = new StreamChannel();
+    streamChannel.setUuid(this.streamChannelUuid);
+    
+    Podcast podcast = new Podcast();
+    podcast.setUuid(this.uuid);
+    podcast.setTitle(this.title);
+    podcast.setDescription(this.description);
+    podcast.setReleaseDate(releaseDateTime);
+    podcast.setStreamChannel(streamChannel);
+
+    return podcast;
   }
 }

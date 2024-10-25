@@ -16,19 +16,4 @@ import lombok.NoArgsConstructor;
 public class Podcast extends Content {
   private String uuid;
   private LocalDateTime releaseDate; 
-
-  public Podcast(String uuid, String title, String description, LocalDateTime releaseDate, StreamChannel streamChannel) {
-    super(null, title, description, streamChannel);
-    this.uuid = uuid;
-    this.releaseDate = releaseDate;
-  } 
-
-  public Podcast(String uuid, String title, String description, LocalDateTime releaseDate, String streamChannelUuid) {
-    super(null, title, description, null);
-    StreamChannel streamChannel = new StreamChannel();
-    streamChannel.setUuid(streamChannelUuid);
-    super.setStreamChannel(streamChannel);
-    this.uuid = uuid;
-    this.releaseDate = releaseDate;
-  }
 }

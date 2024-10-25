@@ -30,13 +30,13 @@ public class CreatePodcastService {
       throw new RuntimeException("Stream Channel not found");
     }
     
-    Podcast new_podcast = new Podcast(
-      UUID.randomUUID().toString(),
-      podcast.getTitle(),
-      podcast.getDescription(),
-      podcast.getReleaseDate(),
-      streamChannel
-    );
+    Podcast new_podcast = new Podcast();
+    new_podcast.setUuid(UUID.randomUUID().toString());
+    new_podcast.setTitle(podcast.getTitle());
+    new_podcast.setDescription(podcast.getDescription());
+    new_podcast.setReleaseDate(podcast.getReleaseDate());
+    new_podcast.setStreamChannel(streamChannel);
+
     podcastRepository.save(new_podcast);
     if(new_podcast.getId() == null){
       throw new RuntimeException("Podcast not created");
