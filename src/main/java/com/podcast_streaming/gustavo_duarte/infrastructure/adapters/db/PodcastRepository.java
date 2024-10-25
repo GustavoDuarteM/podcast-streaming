@@ -7,5 +7,6 @@ import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 @Repository
 public interface PodcastRepository extends CrudRepository<Podcast, Long> {
     Podcast findByUuid(String uuid);
+    Podcast findBystreamChannelIdAndUuid(Integer streamChannelId, String uuid);
     Iterable<Podcast> findBystreamChannelId(Integer streamChannelId);
 }

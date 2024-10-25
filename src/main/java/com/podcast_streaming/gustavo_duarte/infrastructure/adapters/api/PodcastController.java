@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.FindPodcastService;
 import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.ListPodcastsService;
 import com.podcast_streaming.gustavo_duarte.application.services.podcasts.CreatePodcastService;
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
@@ -18,13 +19,17 @@ import com.podcast_streaming.gustavo_duarte.model.presenter.PodcastPresenter;
 public class PodcastController {
   private CreatePodcastService createPodcastService;
   private ListPodcastsService listPodcastsService;
+  private FindPodcastService findPodcastService;
 
   @Autowired
   public PodcastController(
-  CreatePodcastService createPodcastService,
-  ListPodcastsService listPodcastsService) {
+    CreatePodcastService createPodcastService,
+    ListPodcastsService listPodcastsService,
+    FindPodcastService findPodcastService
+  ) {
     this.createPodcastService = createPodcastService;
     this.listPodcastsService = listPodcastsService;
+    this.findPodcastService = findPodcastService;
   }
 
   @PostMapping()
@@ -36,5 +41,10 @@ public class PodcastController {
   @GetMapping()
   public Iterable<Podcast> listPodcasts(@PathVariable String streamChannelUuid){
     return listPodcastsService.listPodcasts(streamChannelUuid);
+  }
+
+  @GetMapping("/{podcastsUuid}")
+  public Podcast findPodcast(@PathVariable String streamChannelUuid, @PathVariable String podcastsUuid){
+    return findPodcastService.findPodcast(streamChannelUuid, podcastsUuid);
   }
 }
