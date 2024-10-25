@@ -2,9 +2,7 @@ package com.podcast_streaming.gustavo_duarte.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,10 +27,8 @@ public abstract class Content {
   @JsonIgnore
   private Integer id;
 
-  private String uuid;
   private String title;
   private String description;
-
 
   @JsonIgnore
   @ManyToOne

@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS contents (
   id SERIAL PRIMARY KEY,
-  uuid character varying COLLATE pg_catalog."default" NOT NULL,
   title character varying COLLATE pg_catalog."default" NOT NULL,
   description character varying COLLATE pg_catalog."default" NOT NULL,
   stream_channel_id integer NOT NULL,
