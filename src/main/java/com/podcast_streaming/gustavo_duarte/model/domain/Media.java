@@ -1,12 +1,38 @@
 package com.podcast_streaming.gustavo_duarte.model.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+@Table(name = "medias")
 public class Media {
-  @Getter @Setter private Integer id;
-  @Getter @Setter private String uuid;
-  @Getter @Setter private StreamChannel author;
-  @Getter @Setter private String title;
-  @Getter @Setter private Integer durationTimeSeconds;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonIgnore
+  private Integer id;
+  
+  private String uuid;
+  private String fileName;
+  private String fileURL;
+  private String fileKey;
+  private String fileExtension;
+  private Integer durationTimeSeconds;
+
+  @JsonIgnore
+  @ManyToOne
+  @JoinColumn(name = "content_id", referencedColumnName = "id")
+  private Content content;
 }
