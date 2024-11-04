@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS medias(
-  id BIGINT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   uuid character varying COLLATE pg_catalog."default" NOT NULL,
   file_name character varying COLLATE pg_catalog."default" NOT NULL, 
   file_url character varying COLLATE pg_catalog."default" NOT NULL,

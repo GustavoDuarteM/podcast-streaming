@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.FindPodcastService;
 import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.ListPodcastsService;
@@ -35,7 +37,23 @@ public class PodcastController {
   @PostMapping()
   public Podcast createPodcast(@RequestBody PodcastPresenter podcastPresenter, @PathVariable String streamChannelUuid) {
     podcastPresenter.setStreamChannelUuid(streamChannelUuid);
-    return createPodcastService.create(podcastPresenter.toDomain());
+    return createPodcastService.create(podcastPresenter.toDomain(),null);
+  }
+
+  @PostMapping(path="/upload")
+  public Podcast uploadPodcast(
+        @RequestPart("file") MultipartFile file,
+        @RequestPart("title") String title,
+        @RequestPart("description") String description,
+        @RequestPart("releaseDate") String releaseDate,
+        @PathVariable String streamChannelUuid
+      ) {
+    PodcastPresenter podcastPresenter = new PodcastPresenter();
+    podcastPresenter.setTitle(title);
+    podcastPresenter.setDescription(description);
+    podcastPresenter.setReleaseDate(releaseDate);
+    podcastPresenter.setStreamChannelUuid(streamChannelUuid);
+    return createPodcastService.create(podcastPresenter.toDomain(), file);
   }
 
   @GetMapping()

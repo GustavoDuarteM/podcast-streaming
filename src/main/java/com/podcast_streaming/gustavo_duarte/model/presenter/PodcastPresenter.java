@@ -1,8 +1,9 @@
 package com.podcast_streaming.gustavo_duarte.model.presenter;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 import com.podcast_streaming.gustavo_duarte.model.domain.StreamChannel;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class PodcastPresenter {
   private String description;
   private String releaseDate;
   private String streamChannelUuid;
-
+  
   public Podcast toDomain() {
     LocalDate releaseDate = LocalDate.parse(this.releaseDate, FORMATTER);
     LocalDateTime releaseDateTime = releaseDate.atStartOfDay();

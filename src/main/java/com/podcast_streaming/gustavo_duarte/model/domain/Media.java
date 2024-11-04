@@ -2,6 +2,7 @@ package com.podcast_streaming.gustavo_duarte.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,8 @@ public class Media {
   
   private String uuid;
   private String fileName;
+  
+  @Column(name = "file_url")
   private String fileURL;
   private String fileKey;
   private String fileExtension;
