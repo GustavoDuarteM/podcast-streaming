@@ -1,13 +1,11 @@
 package com.podcast_streaming.gustavo_duarte.infrastructure.adapters.storage.s3;
 
 import java.io.InputStream;
-import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amazonaws.services.s3.AmazonS3;
 
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;

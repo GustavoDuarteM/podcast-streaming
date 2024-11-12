@@ -1,6 +1,5 @@
 package com.podcast_streaming.gustavo_duarte.application.services.podcasts;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -12,7 +11,6 @@ import com.podcast_streaming.gustavo_duarte.infrastructure.adapters.db.MediaRepo
 import com.podcast_streaming.gustavo_duarte.infrastructure.adapters.db.PodcastRepository;
 import com.podcast_streaming.gustavo_duarte.infrastructure.adapters.db.StreamChannelRepository;
 import com.podcast_streaming.gustavo_duarte.infrastructure.adapters.storage.s3.UploadFileStorageService;
-import com.podcast_streaming.gustavo_duarte.model.domain.Content;
 import com.podcast_streaming.gustavo_duarte.model.domain.Media;
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 import com.podcast_streaming.gustavo_duarte.model.domain.StreamChannel;

@@ -1,6 +1,5 @@
 package com.podcast_streaming.gustavo_duarte.model.presenter;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 import com.podcast_streaming.gustavo_duarte.model.domain.StreamChannel;
