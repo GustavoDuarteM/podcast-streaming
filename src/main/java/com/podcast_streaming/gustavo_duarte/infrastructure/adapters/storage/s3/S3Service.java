@@ -11,7 +11,6 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetUrlRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 @Service
 public class S3Service {
@@ -32,9 +31,7 @@ public class S3Service {
               .build();
       RequestBody requestBody = RequestBody.fromInputStream(inputStream, data.getSize());
 
-      PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, requestBody);
-      
-      String url = putObjectResponse.eTag();
+      s3Client.putObject(putObjectRequest, requestBody);
       
       GetUrlRequest getUrlRequest = GetUrlRequest.builder()
               .bucket(s3Config.getBucketName())
