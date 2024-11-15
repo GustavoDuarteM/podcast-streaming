@@ -47,7 +47,7 @@ public class CreatePodcastService {
     Map<String, String> uploadResult = uploadFileStorageService.upload(contentFile);
     
     Media new_media = initializeMedia(contentFile, uploadResult);
-    Podcast new_podcast = initializePodcast(podcast, streamChannel, new_media);
+    Podcast new_podcast = initializePodcast(podcast, streamChannel);
     
     podcastRepository.save(new_podcast);
 
@@ -62,7 +62,7 @@ public class CreatePodcastService {
     }
   }
 
-  private Podcast initializePodcast(Podcast podcast, StreamChannel streamChannel, Media media) {
+  private Podcast initializePodcast(Podcast podcast, StreamChannel streamChannel) {
     Podcast new_podcast = new Podcast();
     new_podcast.setUuid(UUID.randomUUID().toString());
     new_podcast.setTitle(podcast.getTitle());
