@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,6 @@ public class Album extends Content {
   @Positive(message = "Ano de lançamento do álbum é obrigatório")
   private Integer year;
 
-  @NotBlank(message = "Data de lançamento do álbum é obrigatória")
+  @NotNull(message = "Data de lançamento do álbum é obrigatória")
   private LocalDateTime releaseDate;
 }

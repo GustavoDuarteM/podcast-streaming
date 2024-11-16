@@ -23,8 +23,8 @@ public class AlbumPresenter {
   private String releaseDate;
   private String artist;
   private String genre;
-  private Integer tracks;
-  private Integer year;
+  private String tracks;
+  private String year;
   private String streamChannelUuid;
   
   public Album toDomain() {
@@ -41,8 +41,8 @@ public class AlbumPresenter {
     album.setReleaseDate(releaseDateTime);
     album.setArtist(description);
     album.setGenre(this.genre);
-    album.setTracks(this.tracks);
-    album.setYear(this.year);
+    album.setTracks(Integer.parseInt(this.tracks));
+    album.setYear(Integer.parseInt(year));
     album.setStreamChannel(streamChannel);
 
     return album;

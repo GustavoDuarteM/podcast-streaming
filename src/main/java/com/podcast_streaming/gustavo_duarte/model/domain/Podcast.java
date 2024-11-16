@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "podcasts")
 public class Podcast extends Content {
   private String uuid;
+
+  @NotNull(message = "Data de lançamento do álbum é obrigatória")
   private LocalDateTime releaseDate; 
 }

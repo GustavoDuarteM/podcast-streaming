@@ -38,22 +38,8 @@ public class AlbumController {
   @PostMapping()
   public Album createAlbum(
   @RequestPart("files") MultipartFile[] files,
-  @RequestPart("title") String title,
-  @RequestPart("description") String description,
-  @RequestPart("releaseDate") String releaseDate,
-  @RequestPart("artist") String artist,
-  @RequestPart("genre") String genre,
-  @RequestPart("tracks") String tracks,
-  @RequestPart("year") String year,
+  @RequestPart("album") AlbumPresenter albumPresenter,
   @PathVariable String streamChannelUuid) {
-    AlbumPresenter albumPresenter = new AlbumPresenter();
-    albumPresenter.setTitle(title);
-    albumPresenter.setDescription(description);
-    albumPresenter.setReleaseDate(releaseDate);
-    albumPresenter.setArtist(artist);
-    albumPresenter.setGenre(genre);
-    albumPresenter.setTracks(Integer.parseInt(tracks));
-    albumPresenter.setYear(Integer.parseInt(year));
     albumPresenter.setStreamChannelUuid(streamChannelUuid);
     return createAlbumService.create(albumPresenter.toDomain(), files);
   }
