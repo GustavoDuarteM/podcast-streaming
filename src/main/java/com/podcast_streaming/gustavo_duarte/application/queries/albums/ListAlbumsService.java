@@ -1,6 +1,10 @@
 package com.podcast_streaming.gustavo_duarte.application.queries.albums;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.podcast_streaming.gustavo_duarte.infrastructure.adapters.db.AlbumRepository;
@@ -22,9 +26,14 @@ public class ListAlbumsService {
     this.streamChannelRepository = streamChannelRepository;
   }
 
-  public Iterable<Album> listAlbums(String streamChannelUuid) {
+  public List<Album> listAlbums(
+    String page,
+    String streamChannelUuid
+  ) {
     StreamChannel streamChannel = streamChannelRepository.findByUuid(streamChannelUuid); 
+    page = page == null ? "0" : page;
+    Pageable pageable = PageRequest.of(Integer.parseInt(page), 10);
 
-    return albumRepository.findBystreamChannelId(streamChannel.getId());
+    return albumRepository.findBystreamChannelId(pageable, streamChannel.getId());
   }
 }

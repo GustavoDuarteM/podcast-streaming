@@ -1,10 +1,13 @@
 package com.podcast_streaming.gustavo_duarte.infrastructure.adapters.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,8 +34,11 @@ public class AlbumController {
   }
 
   @GetMapping()
-  public Iterable<Album> listAlbums(@PathVariable String streamChannelUuid){
-    return listAlbumsService.listAlbums(streamChannelUuid);
+  public List<Album> listAlbums(
+    @RequestParam(defaultValue = "0") String page,
+    @PathVariable String streamChannelUuid
+  ){
+    return listAlbumsService.listAlbums(page, streamChannelUuid);
   }
 
   @PostMapping()
