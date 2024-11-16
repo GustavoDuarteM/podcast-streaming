@@ -16,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,8 +33,12 @@ public abstract class Content {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonIgnore
   private Integer id;
-
+  
+  @NotBlank(message = "Titulo é obrigatório")
   private String title;
+  @NotBlank(message = "Descrição é obrigatória")
+  
+  @Size(max = 200, message = "Descrição deve ter no máximo 200 caracteres")
   private String description;
 
   @JsonIgnore

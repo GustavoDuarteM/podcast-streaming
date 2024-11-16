@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
@@ -30,7 +31,11 @@ public class StreamChannel {
   @JsonIgnore
   private Integer id;
   private String uuid;
+  
+  @NotBlank(message = "Nome do canal é obrigatório")
   private String name;
+
+  
   private String description; 
   
   @JsonIgnore
