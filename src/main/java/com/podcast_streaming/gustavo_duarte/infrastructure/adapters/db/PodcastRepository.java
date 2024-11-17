@@ -16,5 +16,5 @@ public interface PodcastRepository extends CrudRepository<Podcast, Long>, Paging
     Podcast findBystreamChannelIdAndUuid(Integer streamChannelId, String uuid);
     Iterable<Podcast> findBystreamChannelId(Integer streamChannelId);
     List<Podcast> findBystreamChannelId(Pageable pageable, Integer streamChannelId);
-
+    void deleteBystreamChannelIdAndUuid(Integer streamChannelId, String uuid);
 }

@@ -3,6 +3,7 @@ package com.podcast_streaming.gustavo_duarte.infrastructure.adapters.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.FindPodcastService;
 import com.podcast_streaming.gustavo_duarte.application.queries.podcasts.ListPodcastsService;
 import com.podcast_streaming.gustavo_duarte.application.services.podcasts.CreatePodcastService;
+import com.podcast_streaming.gustavo_duarte.application.services.podcasts.DeletePodcastService;
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 import com.podcast_streaming.gustavo_duarte.model.presenter.PodcastPresenter;
 
@@ -25,16 +27,19 @@ public class PodcastController {
   private CreatePodcastService createPodcastService;
   private ListPodcastsService listPodcastsService;
   private FindPodcastService findPodcastService;
+  private DeletePodcastService  deletePodcastService;
 
   @Autowired
   public PodcastController(
     CreatePodcastService createPodcastService,
     ListPodcastsService listPodcastsService,
-    FindPodcastService findPodcastService
+    FindPodcastService findPodcastService,
+    DeletePodcastService  deletePodcastService
   ) {
     this.createPodcastService = createPodcastService;
     this.listPodcastsService = listPodcastsService;
     this.findPodcastService = findPodcastService;
+    this.deletePodcastService = deletePodcastService;
   }
 
   @PostMapping()
@@ -70,5 +75,10 @@ public class PodcastController {
   @GetMapping("/{podcastsUuid}")
   public Podcast findPodcast(@PathVariable String streamChannelUuid, @PathVariable String podcastsUuid){
     return findPodcastService.findPodcast(streamChannelUuid, podcastsUuid);
+  }
+
+  @DeleteMapping("/{podcastsUuid}")
+  public void deletePodcast(@PathVariable String streamChannelUuid, @PathVariable String podcastsUuid){
+    deletePodcastService.delete(streamChannelUuid, podcastsUuid);
   }
 }
