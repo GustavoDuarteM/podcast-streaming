@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.podcast_streaming.gustavo_duarte.application.queries.albums.FindAlbumService;
 import com.podcast_streaming.gustavo_duarte.application.queries.albums.ListAlbumsService;
 import com.podcast_streaming.gustavo_duarte.application.services.albums.CreateAlbumService;
 import com.podcast_streaming.gustavo_duarte.model.domain.Album;
@@ -22,15 +23,18 @@ import com.podcast_streaming.gustavo_duarte.model.presenter.AlbumPresenter;
 public class AlbumController {
 
   private ListAlbumsService listAlbumsService;
+  private FindAlbumService findAlbumService;
   private CreateAlbumService createAlbumService;
   
   @Autowired
   public AlbumController(
   ListAlbumsService listAlbumsService,
-  CreateAlbumService createAlbumService
+  CreateAlbumService createAlbumService,
+  FindAlbumService findAlbumService
   ) {
     this.listAlbumsService = listAlbumsService;
     this.createAlbumService = createAlbumService;
+    this.findAlbumService = findAlbumService;
   }
 
   @GetMapping()
@@ -39,6 +43,11 @@ public class AlbumController {
     @PathVariable String streamChannelUuid
   ){
     return listAlbumsService.listAlbums(page, streamChannelUuid);
+  }
+
+  @GetMapping("/{AlbumsUuid}")
+  public Album findAlbum(@PathVariable String AlbumsUuid){
+    return findAlbumService.findAlbum(AlbumsUuid);
   }
 
   @PostMapping()
