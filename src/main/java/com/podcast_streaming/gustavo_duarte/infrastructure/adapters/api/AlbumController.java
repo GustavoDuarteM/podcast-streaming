@@ -20,6 +20,10 @@ import com.podcast_streaming.gustavo_duarte.application.services.albums.DeleteAl
 import com.podcast_streaming.gustavo_duarte.model.domain.Album;
 import com.podcast_streaming.gustavo_duarte.model.presenter.AlbumPresenter;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/api/stream-channels/{streamChannelUuid}/albums")
 public class AlbumController {
@@ -43,6 +47,10 @@ public class AlbumController {
   }
 
   @GetMapping()
+  @Operation(summary = "Lista todos os albums")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Lista de albums")
+  })
   public List<Album> listAlbums(
     @RequestParam(defaultValue = "0") String page,
     @PathVariable String streamChannelUuid
@@ -51,11 +59,19 @@ public class AlbumController {
   }
 
   @GetMapping("/{albumsUuid}")
+  @Operation(summary = "Busca um album")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Album encontrado")
+  })
   public Album findAlbum(@PathVariable String albumsUuid){
     return findAlbumService.findAlbum(albumsUuid);
   }
 
   @PostMapping()
+  @Operation(summary = "Cria um novo album")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Album criado")
+  })
   public Album createAlbum(
   @RequestPart("files") MultipartFile[] files,
   @RequestPart("album") AlbumPresenter albumPresenter,
@@ -65,6 +81,10 @@ public class AlbumController {
   }
   
   @DeleteMapping("/{albumsUuid}")
+  @Operation(summary = "Deleta um album")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Album deletado")
+  })
   public void deleteAlbum(@PathVariable String streamChannelUuid, @PathVariable String albumsUuid){
     deleteAlbumService.delete(streamChannelUuid, albumsUuid);
   }

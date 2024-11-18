@@ -16,6 +16,10 @@ import com.podcast_streaming.gustavo_duarte.application.services.stream_channels
 import com.podcast_streaming.gustavo_duarte.model.domain.StreamChannel;
 import com.podcast_streaming.gustavo_duarte.model.presenter.StreamChannelPresenter;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("/api/stream-channels")
 public class StreamChannelController {
@@ -38,22 +42,38 @@ public class StreamChannelController {
   }
 
   @GetMapping()
+  @Operation(summary = "Lista todos os canais de stream")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Lista de canais de stream")
+  })
   public Iterable<StreamChannel> listStreamChannels() {
     return listStreamChannelsService.listStreamChannels();
   }
 
   @PostMapping()
+  @Operation(summary = "Cria um novo canal de stream")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Canal de stream criado")
+  })
   public StreamChannel createStreamChannel(@RequestBody StreamChannelPresenter streamChannelPresenter) {
     return createStreamChannelsService.create(streamChannelPresenter.toDomain());
   }
   
   @PostMapping("/{uuid}")
+  @Operation(summary = "Atualiza um canal de stream")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Canal de stream atualizado")
+  })
   public StreamChannel updateStreamChannel(@PathVariable String uuid, @RequestBody StreamChannelPresenter streamChannelPresenter) {
     streamChannelPresenter.setUuid(uuid);
     return updateStreamChannelsService.update(streamChannelPresenter.toDomain());
   }
 
   @DeleteMapping("/{uuid}")
+  @Operation(summary = "Deleta um canal de stream")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Canal de stream deletado")
+  })
   public void deleteStreamChannel(@PathVariable String uuid) {
     StreamChannelPresenter streamChannelPresenter = new StreamChannelPresenter();
     streamChannelPresenter.setUuid(uuid);

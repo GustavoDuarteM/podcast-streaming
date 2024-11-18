@@ -21,6 +21,10 @@ import com.podcast_streaming.gustavo_duarte.application.services.podcasts.Delete
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 import com.podcast_streaming.gustavo_duarte.model.presenter.PodcastPresenter;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/api/stream-channels/{streamChannelUuid}/podcasts")
 public class PodcastController {
@@ -43,12 +47,20 @@ public class PodcastController {
   }
 
   @PostMapping()
+  @Operation(summary = "Cria um novo podcast")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Podcast criado")
+  })
   public Podcast createPodcast(@RequestBody PodcastPresenter podcastPresenter, @PathVariable String streamChannelUuid) {
     podcastPresenter.setStreamChannelUuid(streamChannelUuid);
     return createPodcastService.create(podcastPresenter.toDomain(),null);
   }
 
   @PostMapping(path="/upload")
+  @Operation(summary = "Faz upload de um novo podcast")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Podcast criado")
+  })
   public Podcast uploadPodcast(
         @RequestPart("file") MultipartFile file,
         @RequestPart("title") String title,
@@ -65,6 +77,10 @@ public class PodcastController {
   }
 
   @GetMapping()
+  @Operation(summary = "Lista todos os podcasts")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Lista de podcasts")
+  })
   public List<Podcast> listPodcasts(
     @RequestParam(defaultValue = "0") String page,
     @PathVariable String streamChannelUuid
@@ -73,11 +89,19 @@ public class PodcastController {
   }
 
   @GetMapping("/{podcastsUuid}")
+  @Operation(summary = "Busca um podcast")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Podcast encontrado")
+  })
   public Podcast findPodcast(@PathVariable String streamChannelUuid, @PathVariable String podcastsUuid){
     return findPodcastService.findPodcast(streamChannelUuid, podcastsUuid);
   }
 
   @DeleteMapping("/{podcastsUuid}")
+  @Operation(summary = "Deleta um podcast")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Podcast deletado")
+  })
   public void deletePodcast(@PathVariable String streamChannelUuid, @PathVariable String podcastsUuid){
     deletePodcastService.delete(streamChannelUuid, podcastsUuid);
   }

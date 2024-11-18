@@ -14,6 +14,10 @@ import com.podcast_streaming.gustavo_duarte.application.services.publishers.Crea
 import com.podcast_streaming.gustavo_duarte.application.services.publishers.DeletePublisherService;
 import com.podcast_streaming.gustavo_duarte.model.domain.Publisher;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("/api/publishers")
 public class PublisherController {
@@ -35,21 +39,37 @@ public class PublisherController {
   }
 
   @GetMapping()
+  @Operation(summary = "Lista todos os publishers")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Lista de publishers")
+  })
   public Iterable<Publisher> listPublishers() {
     return listPublishersService.listPublishers();
   }
   
   @PostMapping()
+  @Operation(summary = "Cria um novo publisher")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Publisher criado")
+  })
   public Publisher createPublisher() {
     return createPublisherService.create(new Publisher());
   }
 
   @GetMapping("/{uuid}")
+  @Operation(summary = "Busca um publisher")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Publisher encontrado")
+  })
   public Publisher findPublisher(@PathVariable String uuid) {
     return findPublisherService.findPublisher(uuid);
   }
 
   @DeleteMapping("/{uuid}")
+  @Operation(summary = "Deleta um publisher")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Publisher deletado")
+  })
   public void deletePublisher(@PathVariable String uuid) {
     deletePublisherService.delete(uuid);
   }
