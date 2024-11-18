@@ -3,6 +3,7 @@ package com.podcast_streaming.gustavo_duarte.infrastructure.adapters.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.podcast_streaming.gustavo_duarte.application.queries.albums.FindAlbumService;
 import com.podcast_streaming.gustavo_duarte.application.queries.albums.ListAlbumsService;
 import com.podcast_streaming.gustavo_duarte.application.services.albums.CreateAlbumService;
+import com.podcast_streaming.gustavo_duarte.application.services.albums.DeleteAlbumService;
 import com.podcast_streaming.gustavo_duarte.model.domain.Album;
 import com.podcast_streaming.gustavo_duarte.model.presenter.AlbumPresenter;
 
@@ -25,16 +27,19 @@ public class AlbumController {
   private ListAlbumsService listAlbumsService;
   private FindAlbumService findAlbumService;
   private CreateAlbumService createAlbumService;
+  private DeleteAlbumService deleteAlbumService;
   
   @Autowired
   public AlbumController(
-  ListAlbumsService listAlbumsService,
-  CreateAlbumService createAlbumService,
-  FindAlbumService findAlbumService
+    ListAlbumsService listAlbumsService,
+    CreateAlbumService createAlbumService,
+    FindAlbumService findAlbumService,
+    DeleteAlbumService deleteAlbumService
   ) {
     this.listAlbumsService = listAlbumsService;
     this.createAlbumService = createAlbumService;
     this.findAlbumService = findAlbumService;
+    this.deleteAlbumService = deleteAlbumService;
   }
 
   @GetMapping()
@@ -45,9 +50,9 @@ public class AlbumController {
     return listAlbumsService.listAlbums(page, streamChannelUuid);
   }
 
-  @GetMapping("/{AlbumsUuid}")
-  public Album findAlbum(@PathVariable String AlbumsUuid){
-    return findAlbumService.findAlbum(AlbumsUuid);
+  @GetMapping("/{albumsUuid}")
+  public Album findAlbum(@PathVariable String albumsUuid){
+    return findAlbumService.findAlbum(albumsUuid);
   }
 
   @PostMapping()
@@ -59,4 +64,8 @@ public class AlbumController {
     return createAlbumService.create(albumPresenter.toDomain(), files);
   }
   
+  @DeleteMapping("/{albumsUuid}")
+  public void deleteAlbum(@PathVariable String streamChannelUuid, @PathVariable String albumsUuid){
+    deleteAlbumService.delete(streamChannelUuid, albumsUuid);
+  }
 }

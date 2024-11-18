@@ -6,5 +6,5 @@ import com.podcast_streaming.gustavo_duarte.model.domain.Media;
 
 @Repository
 public interface MediaRepository extends CrudRepository<Media, Long> {
-  
+  void deleteAllByContentId(Integer contentId);
 }

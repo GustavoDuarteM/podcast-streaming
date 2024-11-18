@@ -48,7 +48,6 @@ public abstract class Content {
 
 
   @JsonIgnore
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
-  @JoinColumn(name = "content_id")
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "content")
   private List<Media> Media;
 }

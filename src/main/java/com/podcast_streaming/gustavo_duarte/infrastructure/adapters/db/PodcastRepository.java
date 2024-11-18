@@ -1,12 +1,11 @@
 package com.podcast_streaming.gustavo_duarte.infrastructure.adapters.db;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.podcast_streaming.gustavo_duarte.model.domain.Podcast;
 
