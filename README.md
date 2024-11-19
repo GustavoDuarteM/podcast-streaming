@@ -57,6 +57,13 @@ mvn spring-boot:run
 ```
 6. O sistema irá carregar os dados a partir do arquivo `start_loader.yml`.
 
+### Endpoints
+Os endpoints foram testados utilizando o Insomnia.
+Nesse projeto, foram criados endpoints para as entidades `Publisher`, `StreamChannel`, `Podcast` e `Album`.
+O arquivo [`Insomnia-gustavo-duarte.json`](https://raw.githubusercontent.com/GustavoDuarteM/podcast-streaming/refs/heads/main/Insomnia-gustavo-duarte) na raiz do prjeto contém as requisições para testar os endpoints.
+Nesse arquivo, há exemplos de requisições para cada entidade, como criar, listar, atualizar e deletar.
+O link para download do Insomnia é: [Insomnia](https://insomnia.rest/download)
+
 ## Autor
 
 - **Gustavo Duarte** - [gustavoduarte](gustavo_dmuniz@hotmail.com)
